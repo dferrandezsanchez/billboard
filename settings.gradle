@@ -1,0 +1,2 @@
+include ':app', ':remote', ':data'
+rootProject.name='billboard'
