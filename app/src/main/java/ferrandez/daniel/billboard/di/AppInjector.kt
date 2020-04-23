@@ -1,4 +1,4 @@
-package ferrandez.daniel.billboard.ferrandez.daniel.billboard.di
+package ferrandez.daniel.billboard.di
 
 import android.app.Activity
 import android.app.Application
@@ -12,6 +12,8 @@ import dagger.android.AndroidInjection
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector
 import ferrandez.daniel.billboard.App
+import ferrandez.daniel.billboard.ferrandez.daniel.billboard.di.Injectable
+import ferrandez.daniel.billboard.ferrandez.daniel.billboard.di.component.DaggerAppComponent
 
 class AppInjector {
     private fun AppInjector() {}

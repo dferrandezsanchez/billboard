@@ -4,6 +4,10 @@ import android.app.Application
 import android.content.Context
 import dagger.Binds
 import dagger.Module
+import ferrandez.daniel.billboard.executors.PostExecutionThread
+import ferrandez.daniel.billboard.executors.UIThread
+import ferrandez.daniel.data.executors.ThreadExecutor
+import ferrandez.daniel.remote.executors.JobExecutor
 
 
 @Module

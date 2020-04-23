@@ -10,7 +10,7 @@ import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import dagger.android.HasServiceInjector
-import ferrandez.daniel.billboard.ferrandez.daniel.billboard.di.AppInjector
+import ferrandez.daniel.billboard.di.AppInjector
 import ferrandez.daniel.billboard.ferrandez.daniel.billboard.di.component.AppComponent
 import javax.inject.Inject
 
@@ -40,4 +40,9 @@ class App : Application(), ViewModelStoreOwner, HasActivityInjector, HasServiceI
         @VisibleForTesting
         set
 
+    override fun onCreate() {
+        super.onCreate()
+        appComponent.inject(this)
+        instance = this
+    }
 }

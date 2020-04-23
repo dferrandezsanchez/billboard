@@ -2,7 +2,6 @@ package ferrandez.daniel.billboard.ferrandez.daniel.billboard.di.component
 
 import android.app.Application
 import android.content.Context
-import com.innovaasv.meridianosalud.com.innovaasv.meridianosalud.di.modules.*
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -19,7 +18,6 @@ import javax.inject.Singleton
         ActivitiesModule::class,
         DataModule::class,
         RemoteModule::class,
-        RemoteLocationModule::class,
         StorageModule::class]
 )
 interface AppComponent {
