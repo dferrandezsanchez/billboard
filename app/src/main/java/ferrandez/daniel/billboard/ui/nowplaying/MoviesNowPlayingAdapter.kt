@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import ferrandez.daniel.billboard.App
 import ferrandez.daniel.billboard.R
 import ferrandez.daniel.billboard.ferrandez.daniel.billboard.common.GlideClient
@@ -40,11 +42,12 @@ class MoviesNowPlayingAdapter(
         fun bind(
             movie: UIMovie
         ) {
+            val mRoundCornetTransform = RoundedCorners(40)
             itemView.tvMovieTitle.text = movie.title
-            itemView.tvMovieSubTitle.text = movie.overview
+            itemView.tvMovieRate.text = movie.vote_average.toString()
             Glide.with(listener)
-                .load("https://image.tmdb.org/t/p/w500/${movie.backdrop_path}")
-                .centerCrop()
+                .load("https://image.tmdb.org/t/p/w500/${movie.poster_path}")
+                .transform(mRoundCornetTransform)
                 .into(itemView.ivMovieImage)
         }
     }
