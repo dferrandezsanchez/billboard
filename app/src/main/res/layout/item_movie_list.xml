@@ -20,6 +20,7 @@
         android:textSize="@dimen/movie_title_size"
         android:layout_width="match_parent"
         android:layout_below="@+id/ivMovieImage"
+        android:fontFamily="@font/comfortaa_bold"
         android:layout_marginBottom="@dimen/small_margin"
         android:layout_height="wrap_content"/>
 
