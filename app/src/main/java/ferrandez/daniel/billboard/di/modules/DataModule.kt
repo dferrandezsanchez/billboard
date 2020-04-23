@@ -2,6 +2,8 @@ package ferrandez.daniel.billboard.ferrandez.daniel.billboard.di.modules
 
 import dagger.Binds
 import dagger.Module
+import ferrandez.daniel.data.repositories.MoviesRepository
+import ferrandez.daniel.data.repositories.MoviesRepositoryImpl
 
 @Module
 abstract class DataModule {
@@ -18,4 +20,7 @@ abstract class DataModule {
         return InstanceOfSomething
         }*/
     }
+
+    @Binds
+    abstract fun bindMoviesRepositoryRepository(moviesRepository: MoviesRepositoryImpl): MoviesRepository
 }

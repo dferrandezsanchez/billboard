@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- TextSize -->
+    <dimen name="movie_title_size">28sp</dimen>
+    <dimen name="movie_subtitle">18sp</dimen>
+    <!-- Margins -->
+    <dimen name="small_margin">8dp</dimen>
+    <dimen name="medium_margin">16dp</dimen>
+</resources>
