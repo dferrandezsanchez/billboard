@@ -17,12 +17,17 @@ import ferrandez.daniel.billboard.ferrandez.daniel.billboard.ui.viewmodel.NowPla
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
 import kotlinx.android.synthetic.main.fragment_movies_now_playing.*
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 /**
  * A simple [Fragment] subclass.
  */
 class MoviesNowPlayingFragment : Fragment(), Injectable {
+
+    val moviesList = ArrayList<UIMovie>()
+    val filteredMoviesList = ArrayList<UIMovie>()
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -45,18 +50,42 @@ class MoviesNowPlayingFragment : Fragment(), Injectable {
     }
 
     private fun bindData() {
-        val moviesList = ArrayList<UIMovie>()
-        rvNowPlaying?.layoutManager = LinearLayoutManager(context)
+        rvNowPlaying?.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         val adapter =
-            MoviesNowPlayingAdapter(moviesList, this)
+            MoviesNowPlayingAdapter(filteredMoviesList, this)
         rvNowPlaying?.adapter = adapter
-        nowPlayingViewModel.nowPlayingList.observe(this, object : Observer<List<UIMovie>> {
-            override fun onChanged(list: List<UIMovie>) {
+        nowPlayingViewModel.nowPlayingList.observe(this,
+            Observer<List<UIMovie>> { list ->
                 moviesList.addAll(list)
+                filteredMoviesList.addAll(moviesList)
                 adapter.notifyDataSetChanged()
+            })
+
+        svNowPlayingSearchBar.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String): Boolean {
+                //Do nothing
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                filterResults(newText)
+                return true
             }
 
         })
+    }
+
+    private fun filterResults(newText: String) {
+        filteredMoviesList.clear()
+        when(newText.isBlank()){
+            true -> filteredMoviesList.addAll(moviesList)
+            else -> {
+                moviesList.forEach {
+                    if(it.title.toLowerCase(Locale.getDefault()).contains(newText.toLowerCase(Locale.getDefault()))) filteredMoviesList.add(it)
+                }
+            }
+        }
+        rvNowPlaying?.adapter?.notifyDataSetChanged()
     }
 
     private fun bindViewModel() {
