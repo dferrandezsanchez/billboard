@@ -7,12 +7,12 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import ferrandez.daniel.billboard.ferrandez.daniel.billboard.di.component.AppComponent
 import dagger.android.AndroidInjection
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector
 import ferrandez.daniel.billboard.App
 import ferrandez.daniel.billboard.ferrandez.daniel.billboard.di.Injectable
+import ferrandez.daniel.billboard.ferrandez.daniel.billboard.di.component.AppComponent
 import ferrandez.daniel.billboard.ferrandez.daniel.billboard.di.component.DaggerAppComponent
 
 class AppInjector {
