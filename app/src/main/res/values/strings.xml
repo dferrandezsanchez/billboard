@@ -6,4 +6,5 @@
     <string name="menu_now_playing">Now Playing</string>
     <string name="menu_popular">Popular</string>
     <string name="films_now_showing_at_cinema">Films now showing at cinema</string>
+    <string name="want_to_watch">Want to watch</string>
 </resources>

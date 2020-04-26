@@ -43,6 +43,14 @@ class MoviesNowPlayingAdapter(
                 .load("https://image.tmdb.org/t/p/w500/${movie.poster_path}")
                 .transform(mRoundCornetTransform)
                 .into(itemView.ivMovieImage)
+
+            itemView.rootView.setOnClickListener {
+                listener.onItemClick(movie)
+            }
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(item: UIMovie)
     }
 }
