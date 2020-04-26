@@ -12,12 +12,17 @@ import dagger.android.HasActivityInjector
 import dagger.android.HasServiceInjector
 import ferrandez.daniel.billboard.di.AppInjector
 import ferrandez.daniel.billboard.ferrandez.daniel.billboard.di.component.AppComponent
+import io.realm.Realm
+import io.realm.RealmConfiguration
 import javax.inject.Inject
 
 class App : Application(), ViewModelStoreOwner, HasActivityInjector, HasServiceInjector {
 
+    private var realm: Realm? = null
+
     @Inject
     lateinit var activityInjector: DispatchingAndroidInjector<Activity>
+
     @Inject
     lateinit var serviceInjector: DispatchingAndroidInjector<Service>
 
@@ -40,9 +45,36 @@ class App : Application(), ViewModelStoreOwner, HasActivityInjector, HasServiceI
         @VisibleForTesting
         set
 
+    /* =====================================================
+    ================= LifeCylce Methods ====================
+    ========================================================*/
+
     override fun onCreate() {
         super.onCreate()
         appComponent.inject(this)
         instance = this
+        initRealm()
+    }
+
+    /* =====================================================
+    =================== Relalm Methods =====================
+    ========================================================*/
+
+    /* Set Simple Instance of Realm because we don't neet to encrypt nothing */
+    private fun initRealm(): Realm? {
+        Realm.init(this)
+        val realmConfiguration: RealmConfiguration = RealmConfiguration.Builder()
+            .deleteRealmIfMigrationNeeded()
+            .build()
+
+        Realm.setDefaultConfiguration(realmConfiguration)
+        val realm = Realm.getInstance(realmConfiguration)
+        realm.beginTransaction()
+        realm.commitTransaction()
+        return realm
+    }
+
+    private fun closeRealm() {
+        realm?.close()
     }
 }

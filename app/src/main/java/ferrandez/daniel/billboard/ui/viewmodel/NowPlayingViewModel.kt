@@ -12,6 +12,7 @@ open class NowPlayingViewModel @Inject constructor(
     private val getNowPlayingMoviesUseCase: GetNowPlayingMoviesUseCase
 ) : ViewModel(), Injectable {
 
+    var selectedMovie = MutableLiveData<UIMovie>()
     val nowPlayingList = MutableLiveData<List<UIMovie>>()
 
     fun getNowPlaying(): Disposable {
