@@ -1,10 +1,10 @@
-package ferrandez.daniel.billboard.ferrandez.daniel.billboard.mappers
+package ferrandez.daniel.storage.mappers
 
-import ferrandez.daniel.billboard.ferrandez.daniel.billboard.model.UIMovie
 import ferrandez.daniel.data.model.MovieEntity
+import ferrandez.daniel.storage.model.RLMMovie
 import io.reactivex.Single
 
-fun UIMovie.asDataEntity(): MovieEntity {
+fun RLMMovie.asDataEntity(): MovieEntity {
     return MovieEntity(
         adult,
         backdrop_path,
@@ -24,18 +24,18 @@ fun UIMovie.asDataEntity(): MovieEntity {
     )
 }
 
-fun Single<UIMovie>.asDataEntity(): Single<MovieEntity> {
+fun Single<RLMMovie>.asDataEntity(): Single<MovieEntity> {
     return this.map { it.asDataEntity() }
 }
 
-fun List<UIMovie>.asDataEntity(): List<MovieEntity> =
+fun List<RLMMovie>.asDataEntity(): List<MovieEntity> =
     map { it.asDataEntity() }
 
-fun List<MovieEntity>.asUIEntity(): List<UIMovie> =
-    map { it.asUIEntity() }
+fun List<MovieEntity>.asStorageEntity(): List<RLMMovie> =
+    map { it.asStorageEntity() }
 
-fun MovieEntity.asUIEntity(): UIMovie {
-    return UIMovie(
+fun MovieEntity.asStorageEntity(): RLMMovie {
+    return RLMMovie(
         adult,
         backdrop_path,
         genre_ids,
