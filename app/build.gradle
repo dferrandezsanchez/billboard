@@ -70,4 +70,5 @@ dependencies {
 
     implementation project(':remote')
     implementation project(':data')
+    implementation project(':storage')
 }
