@@ -3,7 +3,7 @@ package ferrandez.daniel.billboard.ferrandez.daniel.billboard.di.modules.fragmen
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import ferrandez.daniel.billboard.ui.nowplaying.MoviesNowPlayingFragment
-import ferrandez.daniel.billboard.ui.popular.MoviesPopularFragment
+import ferrandez.daniel.billboard.ui.wantedToWatch.MoviesWantedToWatchFragment
 
 @Module
 abstract class MainFragmentsBuildersModule {
@@ -12,5 +12,5 @@ abstract class MainFragmentsBuildersModule {
     abstract fun contributeMoviesNowPlayingFragmentInjector(): MoviesNowPlayingFragment
 
     @ContributesAndroidInjector
-    abstract fun contributeMoviesPopularFragmentInjector(): MoviesPopularFragment
+    abstract fun contributeMoviesPopularFragmentInjector(): MoviesWantedToWatchFragment
 }

@@ -1,12 +1,13 @@
 package ferrandez.daniel.storage.model
 
+import io.realm.RealmList
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 
 open class RLMMovie(
     var adult: Boolean = false,
     var backdrop_path: String = "",
-    var genre_ids: List<Int> = listOf(),
+    var genre_ids: RealmList<Int> = RealmList(),
     @PrimaryKey
     var id: Int = -1,
     var original_language: String = "",
@@ -19,5 +20,5 @@ open class RLMMovie(
     var video: Boolean = false,
     var vote_average: Double = 0.0,
     var vote_count: Int = -1,
-    var wantToWatch: Boolean = false
+    var favourite: Boolean = false
 ) : RealmObject()

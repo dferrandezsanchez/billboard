@@ -3,6 +3,7 @@ package ferrandez.daniel.storage.mappers
 import ferrandez.daniel.data.model.MovieEntity
 import ferrandez.daniel.storage.model.RLMMovie
 import io.reactivex.Single
+import io.realm.RealmList
 
 fun RLMMovie.asDataEntity(): MovieEntity {
     return MovieEntity(
@@ -19,8 +20,7 @@ fun RLMMovie.asDataEntity(): MovieEntity {
         title,
         video,
         vote_average,
-        vote_count,
-        wantToWatch
+        vote_count
     )
 }
 
@@ -34,11 +34,13 @@ fun List<RLMMovie>.asDataEntity(): List<MovieEntity> =
 fun List<MovieEntity>.asStorageEntity(): List<RLMMovie> =
     map { it.asStorageEntity() }
 
+fun RealmList<Int>.asDataEntity(): List<Int> = map { it }
+
 fun MovieEntity.asStorageEntity(): RLMMovie {
     return RLMMovie(
         adult,
         backdrop_path,
-        genre_ids,
+        RealmList(),
         id,
         original_language,
         original_title,
@@ -49,7 +51,6 @@ fun MovieEntity.asStorageEntity(): RLMMovie {
         title,
         video,
         vote_average,
-        vote_count,
-        wantToWatch
+        vote_count
     )
 }

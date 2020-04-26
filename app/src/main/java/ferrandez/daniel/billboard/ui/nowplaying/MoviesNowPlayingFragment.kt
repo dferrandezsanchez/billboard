@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import ferrandez.daniel.billboard.R
 import ferrandez.daniel.billboard.ferrandez.daniel.billboard.di.Injectable
 import ferrandez.daniel.billboard.ferrandez.daniel.billboard.model.UIMovie
@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.fragment_movies_now_playing.*
 import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
+
 
 /**
  * A simple [Fragment] subclass.
@@ -50,7 +51,9 @@ class MoviesNowPlayingFragment : Fragment(), Injectable {
     }
 
     private fun bindData() {
-        rvNowPlaying?.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val layoutManager =
+            GridLayoutManager(requireContext(), 2)
+        rvNowPlaying?.layoutManager = layoutManager
         val adapter =
             MoviesNowPlayingAdapter(filteredMoviesList, this)
         rvNowPlaying?.adapter = adapter

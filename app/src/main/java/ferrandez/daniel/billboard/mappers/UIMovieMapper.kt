@@ -50,6 +50,6 @@ fun MovieEntity.asUIEntity(): UIMovie {
         video,
         vote_average,
         vote_count,
-        wantToWatch
+        wantToWatch ?: false
     )
 }

@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_movies_now_playing" />
     <fragment
         android:id="@+id/moviesPopular"
-        android:name="ferrandez.daniel.billboard.ui.popular.MoviesPopularFragment"
+        android:name="ferrandez.daniel.billboard.ui.wantedToWatch.MoviesWantedToWatchFragment"
         android:label="fragment_movies_popular"
         tools:layout="@layout/fragment_movies_popular" />
 </navigation>

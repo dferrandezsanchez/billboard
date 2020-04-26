@@ -1,4 +1,4 @@
-package ferrandez.daniel.billboard.ui.popular
+package ferrandez.daniel.billboard.ui.wantedToWatch
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import ferrandez.daniel.billboard.ferrandez.daniel.billboard.di.Injectable
 /**
  * A simple [Fragment] subclass.
  */
-class MoviesPopularFragment : Fragment(), Injectable {
+class MoviesWantedToWatchFragment : Fragment(), Injectable {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
