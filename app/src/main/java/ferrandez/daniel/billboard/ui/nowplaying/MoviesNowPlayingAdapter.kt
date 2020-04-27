@@ -9,12 +9,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import ferrandez.daniel.billboard.R
 import ferrandez.daniel.billboard.ferrandez.daniel.billboard.model.UIMovie
-import ferrandez.daniel.billboard.ui.nowplaying.MoviesNowPlayingFragment
+import ferrandez.daniel.billboard.ferrandez.daniel.billboard.ui.BaseMovieFragment
 import kotlinx.android.synthetic.main.item_movie_list.view.*
 
 class MoviesNowPlayingAdapter(
     private val movieList: ArrayList<UIMovie>,
-    val listener: MoviesNowPlayingFragment
+    val listener: BaseMovieFragment
 ) :
     RecyclerView.Adapter<MoviesNowPlayingAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -34,5 +34,9 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
             navController.navigate(item.itemId)
             return@setOnNavigationItemSelectedListener true
         }
+
+        bottomNav.setOnNavigationItemReselectedListener {
+            //Used to don't load fragment again
+        }
     }
 }

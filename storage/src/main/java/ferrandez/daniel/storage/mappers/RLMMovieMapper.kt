@@ -51,6 +51,8 @@ fun MovieEntity.asStorageEntity(): RLMMovie {
         title,
         video,
         vote_average,
-        vote_count
+        vote_count,
+        wantToWatch ?: false
     )
+
 }

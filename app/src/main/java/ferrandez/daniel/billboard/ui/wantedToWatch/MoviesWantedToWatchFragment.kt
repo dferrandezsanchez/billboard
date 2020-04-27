@@ -5,13 +5,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import ferrandez.daniel.billboard.R
 import ferrandez.daniel.billboard.ferrandez.daniel.billboard.di.Injectable
+import ferrandez.daniel.billboard.ferrandez.daniel.billboard.model.UIMovie
+import ferrandez.daniel.billboard.ferrandez.daniel.billboard.ui.BaseMovieFragment
+import ferrandez.daniel.billboard.ferrandez.daniel.billboard.ui.nowplaying.MoviesNowPlayingAdapter
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
+import kotlinx.android.synthetic.main.fragment_movies_popular.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * A simple [Fragment] subclass.
  */
-class MoviesWantedToWatchFragment : Fragment(), Injectable {
+class MoviesWantedToWatchFragment : BaseMovieFragment(), Injectable {
+
+    private val moviesList = ArrayList<UIMovie>()
+    private val filteredMoviesList = ArrayList<UIMovie>()
+
+    private val disposable = CompositeDisposable()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,9 +38,51 @@ class MoviesWantedToWatchFragment : Fragment(), Injectable {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        bindViewModel()
+        bindData()
     }
 
-    private fun bindViewModel() {
+    private fun bindData() {
+        val layoutManager =
+            GridLayoutManager(requireContext(), 2)
+        rvWantedToWatch?.layoutManager = layoutManager
+        val adapter =
+            MoviesNowPlayingAdapter(filteredMoviesList, this)
+        rvWantedToWatch?.adapter = adapter
+        wantToWatchViewModel.wantedToWatchList.observe(this,
+            Observer { list ->
+                moviesList.clear()
+                moviesList.addAll(list)
+                filterResults("")
+                adapter.notifyDataSetChanged()
+            })
+
+        svWantedToWatchSearchBar.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                //Do nothing
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                filterResults(newText)
+                return true
+            }
+
+        })
+    }
+
+    private fun filterResults(newText: String) {
+        filteredMoviesList.clear()
+        when (newText.isBlank()) {
+            true -> filteredMoviesList.addAll(moviesList)
+            else -> {
+                moviesList.forEach {
+                    if (it.title.toLowerCase(Locale.getDefault())
+                            .contains(newText.toLowerCase(Locale.getDefault()))
+                    ) filteredMoviesList.add(it)
+                }
+            }
+        }
+        rvWantedToWatch?.adapter?.notifyDataSetChanged()
     }
 }
