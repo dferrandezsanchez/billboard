@@ -83,6 +83,16 @@ class MoviesWantedToWatchFragment : BaseMovieFragment(), Injectable {
                 }
             }
         }
+        when (filteredMoviesList.isEmpty()) {
+            true -> {
+                tvWantedToWatchEmpty.visibility = View.VISIBLE
+                rvWantedToWatch.visibility = View.GONE
+            }
+            else -> {
+                tvWantedToWatchEmpty.visibility = View.GONE
+                rvWantedToWatch.visibility = View.VISIBLE
+            }
+        }
         rvWantedToWatch?.adapter?.notifyDataSetChanged()
     }
 }

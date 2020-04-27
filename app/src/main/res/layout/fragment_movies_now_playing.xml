@@ -6,46 +6,56 @@
     android:layout_height="match_parent"
     tools:context=".ui.nowplaying.MoviesNowPlayingFragment">
 
-        <TextView
-            android:layout_marginTop="@dimen/medium_margin"
-            android:id="@+id/tvNowPlayingTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/medium_margin"
-            android:focusedByDefault="true"
-            android:text="Now Showing"
-            android:textColor="@color/black80"
-            android:layout_alignParentTop="true"
-            android:textSize="@dimen/movie_title_size"
-            android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/tvNowPlayingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="@dimen/medium_margin"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:focusedByDefault="true"
+        android:text="Now Showing"
+        android:textColor="@color/black80"
+        android:textSize="@dimen/movie_title_size"
+        android:textStyle="bold" />
 
-        <TextView
-            android:layout_below="@+id/tvNowPlayingTitle"
-            android:id="@+id/tvNowPlayingSubtitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/medium_margin"
-            android:text="@string/films_now_showing_at_cinema"
-            android:textSize="@dimen/movie_subtitle" />
+    <TextView
+        android:id="@+id/tvNowPlayingSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvNowPlayingTitle"
+        android:layout_marginStart="@dimen/medium_margin"
+        android:text="@string/films_now_showing_at_cinema"
+        android:textSize="@dimen/movie_subtitle" />
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/svNowPlayingSearchBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/medium_margin"
-            android:focusedByDefault="false"
-            app:iconifiedByDefault="false"
-            app:queryHint="Search a film"
-            android:layout_below="@+id/tvNowPlayingSubtitle"
-            app:searchHintIcon="@android:drawable/ic_menu_search" />
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/svNowPlayingSearchBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvNowPlayingSubtitle"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:focusedByDefault="false"
+        app:iconifiedByDefault="false"
+        app:queryHint="Search a film"
+        app:searchHintIcon="@android:drawable/ic_menu_search" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:clipToPadding="false"
-            android:paddingBottom="@dimen/medium_margin"
-            android:id="@+id/rvNowPlaying"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/small_margin"
-            android:layout_below="@+id/svNowPlayingSearchBar"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvNowPlaying"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/svNowPlayingSearchBar"
+        android:layout_marginTop="@dimen/small_margin"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/medium_margin" />
+
+    <TextView
+        android:id="@+id/tvNowPlayingEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textAlignment="center"
+        android:layout_marginHorizontal="@dimen/large_margin"
+        android:text="@string/now_playing_empty"
+        android:textSize="@dimen/movie_subtitle" />
 
 </RelativeLayout>

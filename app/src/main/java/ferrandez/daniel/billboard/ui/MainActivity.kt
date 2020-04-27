@@ -39,4 +39,12 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
             //Used to don't load fragment again
         }
     }
+
+    override fun onBackPressed() {
+        when (findNavController(R.id.main_nav_host_fragment).currentDestination?.id) {
+            R.id.movieDetails ->
+                super.onBackPressed()
+            else -> finish()
+        }
+    }
 }
