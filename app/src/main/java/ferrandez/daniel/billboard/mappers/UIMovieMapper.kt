@@ -19,7 +19,8 @@ fun UIMovie.asDataEntity(): MovieEntity {
         title,
         video,
         vote_average,
-        vote_count
+        vote_count,
+        wantToWatch
     )
 }
 
@@ -48,6 +49,7 @@ fun MovieEntity.asUIEntity(): UIMovie {
         title,
         video,
         vote_average,
-        vote_count
+        vote_count,
+        wantToWatch ?: false
     )
 }

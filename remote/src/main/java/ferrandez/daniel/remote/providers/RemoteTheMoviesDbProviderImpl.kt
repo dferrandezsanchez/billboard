@@ -10,12 +10,12 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class RemoteTheMoviesDbProviderImpl @Inject constructor(
-    serviceConfig: RemoteTheMovieDBServiceConfig
+    val serviceConfig: RemoteTheMovieDBServiceConfig
 ) :
     RemoteTheMovieDBService<TheMovieDbService>(
         TheMovieDbService::class.java,
         serviceConfig), RemoteTheMovieDBProvider {
     override fun getNowPlaying(): Single<List<MovieEntity>> {
-        return service.getNowPlaying().map { it.results.asDataEntity() }
+        return service.getNowPlaying(serviceConfig.language).map { it.results.asDataEntity() }
     }
 }

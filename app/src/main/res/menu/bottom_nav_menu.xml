@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@id/moviesNowPlayingFragment"
+        android:icon="@drawable/ic_ticket"
+        android:title="@string/menu_now_playing" />
+
+    <item
+        android:id="@id/moviesPopular"
+        android:icon="@drawable/ic_star"
+        android:title="@string/menu_want_to_watch" />
+</menu>

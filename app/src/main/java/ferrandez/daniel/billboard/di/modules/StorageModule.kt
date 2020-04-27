@@ -1,6 +1,9 @@
 package ferrandez.daniel.billboard.ferrandez.daniel.billboard.di.modules
 
+import dagger.Binds
 import dagger.Module
+import ferrandez.daniel.data.providers.storage.StorageMoviesProvider
+import ferrandez.daniel.storage.providers.StorageMoviesProviderImpl
 
 @Module
 abstract class StorageModule {
@@ -18,4 +21,9 @@ abstract class StorageModule {
         return InstanceOfSomething
         }*/
     }
+
+    @Binds
+    abstract fun bindStorageMoviesProvider(
+        storageMoviesProviderImpl: StorageMoviesProviderImpl
+    ): StorageMoviesProvider
 }

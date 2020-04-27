@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ferrandez.daniel.billboard.ui.moviedetails.MovieDetailsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clMovieDetailsHeader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true">
+
+        <ImageView
+            android:id="@+id/ivMovieDetailsBackdrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivMovieDetailsBackdropBlur"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@color/black50"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvMovieDetailsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginBottom="@dimen/large_margin"
+            android:focusedByDefault="true"
+            android:text="Title"
+            android:textColor="@color/white"
+            android:textSize="@dimen/movie_title_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/tvMovieDetailsOverview"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvMovieDetailsOverview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/large_margin"
+            android:layout_marginEnd="@dimen/medium_margin"
+            android:layout_marginBottom="@dimen/large_margin"
+            android:ellipsize="end"
+            android:text="@string/films_now_showing_at_cinema"
+            android:textColor="@color/white"
+            android:textSize="@dimen/movie_details_overview"
+            app:layout_constraintBottom_toTopOf="@id/btnSetWantToWatchMovieDetails"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+            <Button
+                android:id="@+id/btnSetWantToWatchMovieDetails"
+                android:layout_width="250dp"
+                android:layout_marginEnd="@dimen/medium_margin"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_button_rounded_shape"
+                android:padding="@dimen/medium_margin"
+                android:text="@string/want_to_watch"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="@dimen/large_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>
