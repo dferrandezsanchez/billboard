@@ -4,38 +4,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import ferrandez.daniel.billboard.R
-import ferrandez.daniel.billboard.ferrandez.daniel.billboard.di.Injectable
 import ferrandez.daniel.billboard.ferrandez.daniel.billboard.model.UIMovie
+import ferrandez.daniel.billboard.ferrandez.daniel.billboard.ui.BaseMovieFragment
 import ferrandez.daniel.billboard.ferrandez.daniel.billboard.ui.nowplaying.MoviesNowPlayingAdapter
-import ferrandez.daniel.billboard.ferrandez.daniel.billboard.ui.viewmodel.NowPlayingViewModel
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.addTo
 import kotlinx.android.synthetic.main.fragment_movies_now_playing.*
 import java.util.*
-import javax.inject.Inject
 import kotlin.collections.ArrayList
 
 
 /**
  * A simple [Fragment] subclass.
  */
-class MoviesNowPlayingFragment : Fragment(), Injectable {
+class MoviesNowPlayingFragment : BaseMovieFragment() {
 
-    val moviesList = ArrayList<UIMovie>()
-    val filteredMoviesList = ArrayList<UIMovie>()
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    lateinit var nowPlayingViewModel: NowPlayingViewModel
-
-    private val disposable = CompositeDisposable()
+    private val moviesList = ArrayList<UIMovie>()
+    private val filteredMoviesList = ArrayList<UIMovie>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,11 +35,15 @@ class MoviesNowPlayingFragment : Fragment(), Injectable {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        bindViewModel()
         bindData()
     }
 
     private fun bindData() {
+        setUpRecyclerView()
+        setUpSearchBar()
+    }
+
+    private fun setUpRecyclerView() {
         val layoutManager =
             GridLayoutManager(requireContext(), 2)
         rvNowPlaying?.layoutManager = layoutManager
@@ -60,13 +52,16 @@ class MoviesNowPlayingFragment : Fragment(), Injectable {
         rvNowPlaying?.adapter = adapter
         nowPlayingViewModel.nowPlayingList.observe(this,
             Observer<List<UIMovie>> { list ->
+                moviesList.clear()
                 moviesList.addAll(list)
-                filteredMoviesList.addAll(moviesList)
+                filterResults("")
                 adapter.notifyDataSetChanged()
             })
+    }
 
+    private fun setUpSearchBar() {
         svNowPlayingSearchBar.setOnQueryTextListener(object :
-            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 //Do nothing
                 return false
@@ -93,25 +88,5 @@ class MoviesNowPlayingFragment : Fragment(), Injectable {
             }
         }
         rvNowPlaying?.adapter?.notifyDataSetChanged()
-    }
-
-    private fun bindViewModel() {
-        activity?.let {
-            nowPlayingViewModel = ViewModelProviders
-                .of(it, viewModelFactory)
-                .get(NowPlayingViewModel::class.java)
-        }
-
-        nowPlayingViewModel.getNowPlaying().addTo(disposable)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        disposable.dispose()
-    }
-
-    fun onItemClick(movie: UIMovie) {
-        nowPlayingViewModel.selectedMovie.postValue(movie)
-        findNavController().navigate(R.id.movieDetails)
     }
 }

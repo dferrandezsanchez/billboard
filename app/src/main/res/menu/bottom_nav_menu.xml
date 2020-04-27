@@ -6,6 +6,6 @@
 
     <item
         android:id="@id/moviesPopular"
-        android:icon="@android:drawable/ic_menu_share"
-        android:title="@string/menu_popular" />
+        android:icon="@drawable/ic_star"
+        android:title="@string/menu_want_to_watch" />
 </menu>

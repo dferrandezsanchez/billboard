@@ -17,7 +17,9 @@ open class NowPlayingViewModel @Inject constructor(
 
     fun getNowPlaying(): Disposable {
         return getNowPlayingMoviesUseCase.execute()
-            .map { nowPlayingList.postValue(it) }
+            .map {
+                nowPlayingList.postValue(it)
+            }
             .doOnError {}
             .subscribe()
     }

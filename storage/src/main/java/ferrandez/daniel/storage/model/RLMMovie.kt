@@ -20,5 +20,5 @@ open class RLMMovie(
     var video: Boolean = false,
     var vote_average: Double = 0.0,
     var vote_count: Int = -1,
-    var favourite: Boolean = false
+    var wantToWatch: Boolean = false
 ) : RealmObject()
