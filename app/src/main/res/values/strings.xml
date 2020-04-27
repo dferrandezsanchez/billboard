@@ -11,4 +11,6 @@
     <string name="wanted_to_watch">Wanted To Watch</string>
     <string name="films_that_you_would_like_watch">Films that you would like watch.</string>
     <string name="watched">Watched!</string>
+    <string name="now_playing_empty">Oops!  There is nothing to sou you, Try again!</string>
+    <string name="wanted_to_watch_empty">Nothing added to list or nothing found filtering, try searching again or adding first movie to \"want to watch\" list</string>
 </resources>

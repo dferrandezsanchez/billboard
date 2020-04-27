@@ -39,4 +39,9 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
             //Used to don't load fragment again
         }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
 }

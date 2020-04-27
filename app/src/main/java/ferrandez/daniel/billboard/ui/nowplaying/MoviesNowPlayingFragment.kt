@@ -51,7 +51,7 @@ class MoviesNowPlayingFragment : BaseMovieFragment() {
             MoviesNowPlayingAdapter(filteredMoviesList, this)
         rvNowPlaying?.adapter = adapter
         nowPlayingViewModel.nowPlayingList.observe(this,
-            Observer<List<UIMovie>> { list ->
+            Observer { list ->
                 moviesList.clear()
                 moviesList.addAll(list)
                 filterResults("")
@@ -85,6 +85,16 @@ class MoviesNowPlayingFragment : BaseMovieFragment() {
                             .contains(newText.toLowerCase(Locale.getDefault()))
                     ) filteredMoviesList.add(it)
                 }
+            }
+        }
+        when (filteredMoviesList.isEmpty()) {
+            true -> {
+                tvNowPlayingEmpty.visibility = View.VISIBLE
+                rvNowPlaying.visibility = View.GONE
+            }
+            else -> {
+                tvNowPlayingEmpty.visibility = View.GONE
+                rvNowPlaying.visibility = View.VISIBLE
             }
         }
         rvNowPlaying?.adapter?.notifyDataSetChanged()
