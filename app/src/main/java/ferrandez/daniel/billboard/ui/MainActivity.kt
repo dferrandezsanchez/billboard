@@ -41,7 +41,10 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        finish()
+        when (findNavController(R.id.main_nav_host_fragment).currentDestination?.id) {
+            R.id.movieDetails ->
+                super.onBackPressed()
+            else -> finish()
+        }
     }
 }
